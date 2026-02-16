@@ -5,6 +5,8 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import jpabook.domain.Member;
+import jpabook.domain.Order;
+import jpabook.domain.OrderItem;
 
 public class JpaMain {
 
@@ -18,8 +20,14 @@ public class JpaMain {
 
         try {
 
+            Order order = new Order();
+//            order.addOrderList(new OrderItem());
+            em.persist(order);
 
+            OrderItem orderItem = new OrderItem();
+            orderItem.setOrder(order);
 
+            em.persist(orderItem); // 단방향 연관관계라도 application에서 다 개발 가능함.
         } catch (Exception e) {
             // 트랜잭션 롤백 - 모든 변경사항 취소
             tx.rollback();
