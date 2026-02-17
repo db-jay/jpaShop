@@ -2,8 +2,6 @@ package jpabook.domain;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-
 @Entity
 public class OrderItem {
 
@@ -11,7 +9,7 @@ public class OrderItem {
     @Column(name = "ORDER_ITEM_ID")
     private Long id;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ORDER_ID")
     private Order order;
 

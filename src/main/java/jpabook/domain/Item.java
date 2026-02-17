@@ -2,6 +2,9 @@ package jpabook.domain;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Item {
 
@@ -15,13 +18,8 @@ public class Item {
 
     private int stockQuantity;
 
-    public Item() {}
-    public Item(Long id, String name, int price, int stockQuantity) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.stockQuantity = stockQuantity;
-    }
+    @ManyToMany(mappedBy = "items")
+    private List<Category> categories = new ArrayList<>();
 
     public Long getId() {
         return id;
